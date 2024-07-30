@@ -1,3 +1,7 @@
-console.log("this is backend of the react")
-console.log("rahul's program")
-console.log("this is from zoha")
+const express=require('express')
+const app=express()
+const port=3000
+app.listen(port,()=>
+{
+    console.log(`the server is running on ${port}`)
+})
