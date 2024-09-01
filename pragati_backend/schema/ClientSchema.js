@@ -1,13 +1,15 @@
 const mongoose=require('mongoose')
 const clientschema=mongoose.Schema({
     ChildName:{
-        type:String
+        type:String,
+        required:true
     },
+    
     DateofBirth:{
     type:Date,
     required:true
     },
-    Disablilites:{
+    Disabilities:{
         type:[String],
         enum:['autism','dyslexic'],
         default:[]
@@ -69,8 +71,21 @@ ContactDetails:{
 },
 password:{
     type:String
-}
+},
+resetpasswordtoken:String,
+resetpasswordexpire:String ,
+photourl:{
+    type:String,
+    default:'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg'
+},
+date:{
+    type:Date,
+    default:Date.now
+    
+},
 
 });
+
+
 const Client=mongoose.model('Client',clientschema);
 module.exports=Client;

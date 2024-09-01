@@ -1,8 +1,6 @@
 const express=require("express")
+const { signup } = require("../controller/Clientcontroller")
 const router=express.Router()
 
-router.get("/singup",(req,res)=>
-{
-    res.status(200).json("the end point is getting triggered")
-})
+router.route('/signup').post(signup)
 module.exports=router

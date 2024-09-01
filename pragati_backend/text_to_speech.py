@@ -15,7 +15,7 @@ async def text_to_speech(text, output_file, rate="-20%", voice="en-US-GuyNeural"
         print(f"An error occurred: {e}")
 
 # Example usage
-text = "rahul"
+text = "this is for demo purpose"
 output_file = "output.mp3"
 
 # Run the TTS conversion
