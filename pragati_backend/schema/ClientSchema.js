@@ -1,0 +1,76 @@
+const mongoose=require('mongoose')
+const clientschema=mongoose.Schema({
+    ChildName:{
+        type:String
+    },
+    DateofBirth:{
+    type:Date,
+    required:true
+    },
+    Disablilites:{
+        type:[String],
+        enum:['autism','dyslexic'],
+        default:[]
+    },
+    Difficulties:{
+        type:[String],
+        
+        default:[]
+    },
+    Parentage:{
+        MotherName:{
+            type:String
+        },
+        FatherName:{
+            type:String
+        },
+        Guardian:{
+                Name:{
+                    type:String,
+                    default:null
+                },
+                Relation:{
+                    type:String,
+                    default:null
+                }
+        }
+    },
+
+Address:{
+    street:{
+        type:String,
+        required:true
+    },
+    city:{
+        type:String,
+        required:true
+    },
+    pincode:{
+        type:String,
+        required:true
+    },
+    state:{
+        type:String,
+        required:true
+    },
+    country:{
+        type:String,
+        required:true
+    }
+}
+,
+ContactDetails:{
+    email:{
+        type:[String]
+    },
+    MobileNumber:{
+        type:[String]
+    }
+},
+password:{
+    type:String
+}
+
+});
+const Client=mongoose.model('Client',clientschema);
+module.exports=Client;
