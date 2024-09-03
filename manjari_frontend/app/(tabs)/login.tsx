@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
@@ -15,6 +15,7 @@ const login = () => {
     };
   
     return (
+        <ScrollView className='bg-[#DCF2FA]'>
       <View className="flex-1 bg-[#DCF2FA] items-center justify-center px-5">
         <StatusBar style="dark" />
         <View>
@@ -23,6 +24,7 @@ const login = () => {
             className="w-13 h-25 mb-5 object-cover"
           />
         </View>
+        
         <Text className="text-2xl mb-5">Welcome Back to Manjari!</Text>
         <View className="flex-row items-center w-full p-4 mb-3 bg-[#DCF2FA] rounded-md border border-[#F5C7C7]">
           <Image
@@ -66,7 +68,9 @@ const login = () => {
         >
           <Text className="text-white text-lg">Login with Google</Text>
         </TouchableOpacity>
+        <Text className='mt-10'>Do not have an account?<Text onPress={()=>router.back()}>SignUp</Text></Text>
       </View>
+      </ScrollView>
     );
 }
 

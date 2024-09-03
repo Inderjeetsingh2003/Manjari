@@ -1,10 +1,11 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import passwordIcon from '../assets/images/lock_24dp_F5C7C7.png';
 import emailIcon from '../assets/images/email_24dp_F5C7C7.png';
 import nameIcon from '../assets/images/edit_24dp_F5C7C7.png';
+
 
 const Index = () => {
   const router = useRouter();
@@ -14,10 +15,11 @@ const Index = () => {
 
   const handleLogin = () => {
     console.log('Logging in with:', email, password);
-    router.push("/login")
+    router.push("/(tabs)/step1")
   };
 
   return (
+    <ScrollView className='bg-[#DCF2FA]'>
     <View className="flex-1 bg-[#DCF2FA] items-center justify-center px-5">
       <StatusBar style="dark" />
       <View>
@@ -84,7 +86,10 @@ const Index = () => {
       >
         <Text className="text-white text-lg">Create an account using Google</Text>
       </TouchableOpacity>
+      <Text className='mt-10'>Already have an account?<Text onPress={()=>router.push("/login")}>Login</Text></Text>
     </View>
+   
+    </ScrollView>
   );
 };
 
