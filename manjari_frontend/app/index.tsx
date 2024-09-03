@@ -4,14 +4,17 @@ import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import passwordIcon from '../assets/images/lock_24dp_F5C7C7.png';
 import emailIcon from '../assets/images/email_24dp_F5C7C7.png';
+import nameIcon from '../assets/images/edit_24dp_F5C7C7.png';
 
 const Index = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const[name, setName]=useState('');
 
   const handleLogin = () => {
     console.log('Logging in with:', email, password);
+    router.push("/login")
   };
 
   return (
@@ -23,7 +26,22 @@ const Index = () => {
           className="w-13 h-25 mb-5 object-cover"
         />
       </View>
-      <Text className="text-2xl mb-5">Welcome Back to Manjari!</Text>
+      <Text className="text-2xl mb-5">Create an account</Text>
+      <View className="flex-row items-center w-full p-4 mb-3 bg-[#DCF2FA] rounded-md border border-[#F5C7C7]">
+        <Image
+          source={nameIcon}
+          className="w-6 h-6 mr-3"
+        />
+        <TextInput
+          className="flex-1 text-base"
+          placeholder="Name"
+          placeholderTextColor="#888"
+          value={name}
+          onChangeText={setName}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+      </View>
       <View className="flex-row items-center w-full p-4 mb-3 bg-[#DCF2FA] rounded-md border border-[#F5C7C7]">
         <Image
           source={emailIcon}
@@ -57,14 +75,14 @@ const Index = () => {
         className="w-full p-4 mt-2 bg-[#F5C7C7] rounded-md items-center"
         onPress={handleLogin}
       >
-        <Text className="text-white text-lg">Login</Text>
+        <Text className="text-white text-lg">Create an account</Text>
       </TouchableOpacity>
       <Text className="my-4">-----------------------------------------OR------------------------------------------</Text>
       <TouchableOpacity
         className="w-full p-4 mt-2 bg-[#F5C7C7] rounded-md items-center"
         onPress={handleLogin}
       >
-        <Text className="text-white text-lg">Login with Google</Text>
+        <Text className="text-white text-lg">Create an account using Google</Text>
       </TouchableOpacity>
     </View>
   );
