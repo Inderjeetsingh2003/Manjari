@@ -12,6 +12,7 @@ const login = () => {
   
     const handleLogin = () => {
       console.log('Logging in with:', email, password);
+      router.push("/(tabs)/mainpage");
     };
   
     return (

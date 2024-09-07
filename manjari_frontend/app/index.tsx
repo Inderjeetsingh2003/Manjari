@@ -24,8 +24,8 @@ const Index = () => {
       <StatusBar style="dark" />
       <View>
         <Image
-          source={require('../assets/images/Manjari3.jpg')}
-          className="w-13 h-25 mb-5 object-cover"
+          source={require('../assets/images/Manjari2.jpg')}
+          className="w-13 h-25 mb-0  object-cover"
         />
       </View>
       <Text className="text-2xl mb-5">Create an account</Text>
@@ -86,7 +86,7 @@ const Index = () => {
       >
         <Text className="text-white text-lg">Create an account using Google</Text>
       </TouchableOpacity>
-      <Text className='mt-10'>Already have an account?<Text onPress={()=>router.push("/login")}>Login</Text></Text>
+      <Text className='mt-4'>Already have an account?<Text onPress={()=>router.push("/login")}>Login</Text></Text>
     </View>
    
     </ScrollView>
