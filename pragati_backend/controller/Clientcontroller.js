@@ -1,4 +1,7 @@
 const Client=require('../schema/ClientSchema')
+const axios=require('axios')
+const fs=require('fs')
+const path=require('path')
 
 const bcrypt=require('bcrypt');
 const { generateaccesstoken } = require('../utils/tokengeneration');
@@ -59,4 +62,44 @@ const signup=(async(req,res)=>
 })
 
 
-module.exports={signup}
+const speech=(async(req,res)=>
+{
+try {
+        const { text } = req.body;
+        if (!text) {
+            return res.status(400).json({ error: 'Text is required' });
+        }
+
+        // Send POST request to Flask server and expect a stream
+        const response = await axios.post(process.env.SPEECHADDRESS, { text }, {
+            responseType: 'stream', // Expecting audio file stream in response
+        });
+
+        // Create directory in root folder if it doesn't exist
+        const outputDir = path.join(__dirname, '..', 'output_files');
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir);
+        }
+
+        // Define output file path in output_files/ directory
+        const outputPath = path.join(outputDir, 'output_from_flask.mp3');
+
+        // Pipe the response data into the output file
+        const writer = fs.createWriteStream(outputPath);
+        response.data.pipe(writer);
+
+        writer.on('finish', () => {
+            res.json({ message: 'File received and saved.', file: outputPath });
+        });
+
+        writer.on('error', (err) => {
+            res.status(500).json({ error: 'Error saving the file', details: err });
+        });
+    } catch (error) {
+        console.error('Error communicating with the Flask server:', error);
+        res.status(500).json({ error: 'Failed to communicate with the Flask server', details: error.message });
+    }
+})
+
+
+module.exports={signup,speech}
