@@ -87,5 +87,5 @@ date:{
 });
 
 
-const Client=mongoose.model('Client',clientschema);
+const Client=mongoose.model('client',clientschema);
 module.exports=Client;

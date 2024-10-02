@@ -1,9 +1,13 @@
 const jwt=require('jsonwebtoken')
 exports.generateaccesstoken=function (id)
 {
-    const user={
-        id:id
+    console.log("the id funciton is getting to generate the token is:",id)
+    const data = {
+        user: {
+            id: id
+        }
     }
-const accesstoken=jwt.sign(user,process.env.SECRETKEY)
+    console.log("data.user.id",data.user.id)
+const accesstoken=jwt.sign(data,process.env.SECRETKEY)
 return accesstoken
 }

@@ -1,6 +1,4 @@
 const Client=require('../schema/ClientSchema')
-const ClientWord=require('../schema/ClientWord')
-const Word=require('../schema/Word')
 const axios=require('axios')
 const fs=require('fs')
 const path=require('path')
@@ -52,20 +50,7 @@ const signup=(async(req,res)=>
             await client.save();
            const accesstoken= generateaccesstoken(client._id)
 
-         //The client will be created. At the same time, to map the clients with their list of words, I have created another schema, where the client id will be mapped initially with alist of words.
-           const wordsList = await Word.find({});
-
-           console.log(wordsList)
-           const clientWord = new ClientWord({
-            clientId: client._id,
-            words: wordsList.map(doc => ({
-                word: doc.word,
-                type: doc.type
-            })) // Storing both 'word' and 'type' fields
-        });
-        
-
-        await clientWord.save()
+         
 
            
             res.status(200).json({success:1,message:"client data saved successfully",client,accesstoken})
@@ -121,4 +106,30 @@ try {
 })
 
 
-module.exports={signup,speech}
+const login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      console.log("the  login is:", " ", email, " ", password);
+      let client=await Client.findOne({"ContactDetails.email":{$in:email}});
+      if (!client) {
+        return res
+          .status(404)
+          .json({ success: 0, message: "user does not exits with this email" });
+      }
+      const comparepass = await bcrypt.compare(password, client.password);
+      if (!comparepass) {
+        return res.status(400).json({ success: 0, message: "invalid password" });
+      }
+     
+      const accesstoken = generateaccesstoken(client._id)
+      return res.status(200).json({ success: 1, accesstoken,client });
+    } catch (error) {
+      console.log(error.message);
+      return res
+        .status(500)
+        .json({ success: 0, message: "internal server error" });
+    }
+  };
+
+
+module.exports={signup,speech,login}
