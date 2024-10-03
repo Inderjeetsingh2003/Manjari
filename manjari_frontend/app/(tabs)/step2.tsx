@@ -2,9 +2,9 @@ import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvo
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import callIcon from '../../assets/images/call_24dp_F5C7C7.png';
-import personIcon from '../../assets/images/person_24dp_F5C7C7.png';
-import arrow_right from '../../assets/images/arrow_forward_24dp_F5C7C7.png';
+import callIcon from '@/assets/images/call_24dp_F5C7C7.png';
+import personIcon from '@/assets/images/person_24dp_F5C7C7.png';
+import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
 const step2 = () => {
 
@@ -27,7 +27,7 @@ const step2 = () => {
       <StatusBar style="dark" />
       <View className="absolute top-5 right-5">
           <Image
-            source={require('../../assets/images/Manjari.jpg')}
+            source={require('@/assets/images/Manjari.jpg')}
             className="w-20 h-20 rounded-full mb-5"
           />
         </View>

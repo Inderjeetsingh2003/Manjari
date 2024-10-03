@@ -4,9 +4,9 @@ import { StatusBar } from 'expo-status-bar';
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 
-import calendarIcon from '../../assets/images/calendar_month_24dp_F5C7C7.png';
-import disabilityIcon from '../../assets/images/volunteer_activism_24dp_F5C7C7.png';
-import difficultyIcon from '../../assets/images/looks_24dp_F5C7C7.png';
+import calendarIcon from '@/assets/images/calendar_month_24dp_F5C7C7.png';
+import disabilityIcon from '@/assets/images/volunteer_activism_24dp_F5C7C7.png';
+import difficultyIcon from '@/assets/images/looks_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 import { router, useRouter } from 'expo-router';
 
@@ -38,7 +38,7 @@ const Step1 = () => {
       <View className="flex-1 items-center px-5">
         <View className="absolute top-5 right-5">
           <Image
-            source={require('../../assets/images/Manjari.jpg')}
+            source={require('@/assets/images/Manjari.jpg')}
             className="w-20 h-20 rounded-full mb-5"
           />
         </View>

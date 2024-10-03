@@ -15,7 +15,7 @@ const Land = () => {
       <StatusBar style="dark" />
       <View className="absolute top-5 right-5">
           <Image
-            source={require('../../../assets/images/Manjari_white_back.jpg')}
+            source={require('@/assets/images/Manjari_white_back.jpg')}
             className="w-20 h-20 rounded-full mb-5"
           />
         </View>
@@ -29,7 +29,7 @@ const Land = () => {
     onChangeText={setSearchQuery}
   />
   <Image
-    source={require('../../../assets/images/search_24dp_F5C7C7.png')}
+    source={require('@/assets/images/search_24dp_F5C7C7.png')}
     className="w-6 h-8 absolute top-4 left-4"
   />
 </View>

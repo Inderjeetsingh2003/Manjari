@@ -2,9 +2,9 @@ import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvo
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import locationIcon from '../../assets/images/location_on_24dp_F5C7C7.png';
-import cityIcon from '../../assets/images/location_city_24dp_F5C7C7.png';
-import arrow_right from '../../assets/images/arrow_forward_24dp_F5C7C7.png';
+import locationIcon from '@/assets/images/location_on_24dp_F5C7C7.png';
+import cityIcon from '@/assets/images/location_city_24dp_F5C7C7.png';
+import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
 const step3 = () => {
 
@@ -27,7 +27,7 @@ const step3 = () => {
       <StatusBar style="dark" />
       <View className="absolute top-5 right-5">
           <Image
-            source={require('../../assets/images/Manjari.jpg')}
+            source={require('@/assets/images/Manjari.jpg')}
             className="w-20 h-20 rounded-full mb-5"
           />
         </View>
@@ -109,7 +109,7 @@ const step3 = () => {
     
     <TouchableOpacity
           className="absolute bottom-10 right-5"
-          onPress={() => router.push("/(tabs)/LangComm/land")} 
+          onPress={() => router.push("/(tabs)/mainpage")} 
         >
           <Image source={arrow_right} className="w-10 h-10" />
         </TouchableOpacity>
