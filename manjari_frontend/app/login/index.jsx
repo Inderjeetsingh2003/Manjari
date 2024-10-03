@@ -60,7 +60,7 @@ export default function LoginScreen() {
         </Text>
         <Pressable onPress={onPress}
         style={{padding:15,marginTop:30,backgroundColor:'#f5c7c7', width: '100%',borderRadius:14, alignItems: "center"}}>
-          <Text style={{fontSize:20, fontFamily:'itim'}}>Get Started</Text>
+          <Text style={{fontSize:20, fontFamily:'itim'}}>Create an account with Google</Text>
         </Pressable>
       </View>
     </View>

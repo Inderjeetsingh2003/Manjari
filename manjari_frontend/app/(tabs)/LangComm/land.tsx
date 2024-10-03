@@ -5,6 +5,10 @@ import { StatusBar } from 'expo-status-bar';
 const Land = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
+  const onPress=()=>{
+    
+  }
+
   return (
     <ScrollView className='bg-white'>
     <View className="flex-1 bg-white items-center justify-center px-5">
@@ -20,7 +24,7 @@ const Land = () => {
       <View className="w-full mb-5 relative">
   <TextInput
     className="w-full p-4 pl-12 bg-gray-200 rounded-lg"
-    placeholder="Search..."
+    placeholder=""
     value={searchQuery}
     onChangeText={setSearchQuery}
   />
@@ -52,7 +56,7 @@ const Land = () => {
   <TouchableOpacity className="items-center justify-center bg-[#32CD32] w-32 h-32 rounded-lg mr-1">
     <Text className="text-base text-black text-center">I want to brush teeth</Text>
   </TouchableOpacity>
-  <TouchableOpacity className="items-center justify-center bg-[#D4AF37] w-32 h-32 rounded-lg ml-1 mr-1">
+  <TouchableOpacity className="items-center justify-center bg-[#D4AF37] w-32 h-32 rounded-lg ml-1 mr-1" onPress={onPress}>
     <Text className="text-base text-black text-center">beautiful</Text>
   </TouchableOpacity>
   <TouchableOpacity className="items-center justify-center bg-[#9dd0f5] w-32 h-32 rounded-lg ml-1">

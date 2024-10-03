@@ -85,7 +85,7 @@ const Step1 = () => {
             
         <Picker
           selectedValue={selectedValue}
-          style={{ height: 50, flex: 1 }}
+          style={{ height: 50, flex: 1 }} 
           onValueChange={(itemValue) => setSelectedValue(itemValue)}
         >
           <Picker.Item label="Autism" value="autism" />
