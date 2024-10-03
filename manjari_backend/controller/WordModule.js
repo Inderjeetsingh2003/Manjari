@@ -75,10 +75,13 @@ const addClientword=async(req,res)=>
         const { levelName, folderName, word, wordtype } = req.body;
         console.log("add admin word", req.user.id);
 
-        // Step 1: Check if the word already exists in the folder
+        // Step 1: Check if the word already exists in the folder onlly
+        // Change made here
         const wordExistsadmin = await AdminWord.findOne({
             "folderName" : word
         });
+
+        //Change made here
 const wordExistsclient=await ClientWord.findOne({
     "folderName":word
 })
