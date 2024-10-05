@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const {AdminWord,ClientWord}=require("../schema/WordsSchema")
 
 const addAdminWord = async (req, res) => {
@@ -144,5 +145,57 @@ console.log("ider tk ho gya")
         });
     }
 }
-module.exports = { addAdminWord, addClientword};
+const retrivewords = async (req, res) => {
+    try {
+        const { level } = req.query;
+
+        console.log("Requested level is:", level);
+
+     
+        const adminWordsPipeline = [
+            { $match: { levelName: level } },
+            { 
+                $unwind: "$folders"},
+            { 
+                $unwind: "$folders.words"  },
+            { 
+                $project: { 
+                    word: "$folders.words.word",
+                    wordtype: "$folders.words.wordtype", 
+                    source: { $literal: 'admin' }  
+                } 
+            }
+        ];
+
+        const clientWordsPipeline = [
+            { $match: { parentId: new mongoose.Types.ObjectId(req.user.id), levelName: level } },
+            { 
+                $unwind: "$folders"  
+            },
+            { 
+                $unwind: "$folders.words"         
+            },
+            { 
+                $project: { 
+                    parentId:req.user.id,
+                    word: "$folders.words.word",  
+                    wordtype: "$folders.words.wordtype",  
+                    source: { $literal: 'client' }  
+                } 
+            }
+        ];
+        const combinedWords = await Promise.all([
+            AdminWord.aggregate(adminWordsPipeline),
+            ClientWord.aggregate(clientWordsPipeline)
+        ]);
+        const flatWords = combinedWords.flat();
+        console.log("Combined words:", flatWords);
+        return res.status(200).json(flatWords);
+    } catch (error) {
+        console.error("Error retrieving words:", error);
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { addAdminWord, addClientword,retrivewords};
 
