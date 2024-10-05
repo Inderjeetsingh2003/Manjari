@@ -6,7 +6,7 @@ import locationIcon from '@/assets/images/location_on_24dp_F5C7C7.png';
 import cityIcon from '@/assets/images/location_city_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
-const step3 = () => {
+const step3 = ({navigation}) => {
 
     const router = useRouter();
   const [city, setCity] = useState('');
@@ -109,7 +109,7 @@ const step3 = () => {
     
     <TouchableOpacity
           className="absolute bottom-10 right-5"
-          onPress={() => router.push("/(tabs)/mainpage")} 
+          onPress={() => navigation.replace('MainPage')}
         >
           <Image source={arrow_right} className="w-10 h-10" />
         </TouchableOpacity>

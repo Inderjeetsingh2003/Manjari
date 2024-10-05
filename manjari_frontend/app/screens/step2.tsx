@@ -6,7 +6,7 @@ import callIcon from '@/assets/images/call_24dp_F5C7C7.png';
 import personIcon from '@/assets/images/person_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
-const step2 = () => {
+const step2 = ({navigation}) => {
 
     const router = useRouter();
   const [fatherName, setFatherName] = useState('');
@@ -110,7 +110,7 @@ const step2 = () => {
     
     <TouchableOpacity
           className="absolute bottom-10 right-5"
-          onPress={() => router.push('/(tabs)/step3')} // Replace 'NextPage' with your actual route name
+          onPress={() => navigation.navigate('Step3')} // Replace 'NextPage' with your actual route name
         >
           <Image source={arrow_right} className="w-10 h-10" />
         </TouchableOpacity>

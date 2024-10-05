@@ -10,7 +10,7 @@ import difficultyIcon from '@/assets/images/looks_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 import { router, useRouter } from 'expo-router';
 
-const Step1 = () => {
+const Step1 = ({navigation}) => {
   const router=useRouter();
 
   const [selectedValue, setSelectedValue] = useState('');
@@ -127,7 +127,7 @@ const Step1 = () => {
     </ScrollView>
     <TouchableOpacity
           className="absolute bottom-10 right-5"
-          onPress={() => router.push('/(tabs)/step2')} // Replace 'NextPage' with your actual route name
+          onPress={() => navigation.navigate('Step2')}// Replace 'NextPage' with your actual route name
         >
           <Image source={arrow_right} className="w-10 h-10" />
         </TouchableOpacity>

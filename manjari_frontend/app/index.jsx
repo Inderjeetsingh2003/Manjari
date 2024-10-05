@@ -3,13 +3,15 @@ import { View, Text, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Redirect, useRootNavigationState } from "expo-router";
 import { useIsFocused } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './navigation/AppNavigator'; 
 
 export default function Index() {
-  const { user } = useUser();
+  // const { user } = useUser();
   const rootNavigationState = useRootNavigationState();
   const isFocused = useIsFocused();
   const [isNavReady, setIsNavReady] = useState(false);
-
+ 
   // Delay rendering until navigation is ready
   useEffect(() => {
     if (rootNavigationState?.key) {
@@ -22,13 +24,17 @@ export default function Index() {
   }
 
   return (
-    <View>
-      {user ? (
-        <Redirect href={"/(tabs)/mainpage"} />
-      ) : (
-        <Redirect href={"/login"} />
-      )}
-    </View>
+    // <View>
+    //   {user ? (
+    //     <Redirect href={"/(tabs)/mainpage"} />
+    //   ) : (
+    //     <Redirect href={"/login"} />
+    //   )}
+    // </View>
+    <NavigationContainer independent={true}>
+      <AppNavigator />
+    </NavigationContainer>
+
   );
 }
 

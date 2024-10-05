@@ -8,45 +8,45 @@ import passwordIcon from '../../assets/images/lock_24dp_F5C7C7.png';
 import emailIcon from '../../assets/images/email_24dp_F5C7C7.png';
 import nameIcon from '../../assets/images/edit_24dp_F5C7C7.png';
 
-export const useWarmUpBrowser = () => {
-  React.useEffect(() => {
-    // Warm up the android browser to improve UX
-    void WebBrowser.warmUpAsync();
-    return () => {
-      void WebBrowser.coolDownAsync();
-    };
-  }, []);
-};
+// export const useWarmUpBrowser = ({navigation}) => {
+//   React.useEffect(() => {
+//     // Warm up the android browser to improve UX
+//     void WebBrowser.warmUpAsync();
+//     return () => {
+//       void WebBrowser.coolDownAsync();
+//     };
+//   }, []);
+// };
 
-WebBrowser.maybeCompleteAuthSession();
+// WebBrowser.maybeCompleteAuthSession();
 
-export default function CombinedScreen() {
+export default function CombinedScreen({navigation}) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
+  // const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
 
-  const onPressGoogle = useCallback(async () => {
-    try {
-      const { createdSessionId } = await startOAuthFlow({
-        redirectUrl: Linking.createURL('/step1', { scheme: 'myapp' }),
-      });
+  // const onPressGoogle = useCallback(async () => {
+  //   try {
+  //     const { createdSessionId } = await startOAuthFlow({
+  //       redirectUrl: Linking.createURL('/step1', { scheme: 'myapp' }),
+  //     });
 
-      if (createdSessionId) {
-        // Successful OAuth flow 
-      } else {
-        // Handle signIn or signUp as needed
-      }
-    } catch (err) {
-      console.error('OAuth error', err);
-    }
-  }, []);
+  //     if (createdSessionId) {
+  //       // Successful OAuth flow 
+  //     } else {
+  //       // Handle signIn or signUp as needed
+  //     }
+  //   } catch (err) {
+  //     console.error('OAuth error', err);
+  //   }
+  // }, []);
 
   const handleCreateAccount = () => {
     console.log('Creating account with:', name, email, password);
-    router.push("/step1");
+    navigation.navigate("Step1");
   }; 
 
   return (
@@ -54,7 +54,7 @@ export default function CombinedScreen() {
       {/* Image from second code */}
       <View>
         <Image
-          source={require('../../assets/images/Manjari3.jpg')}
+          source={require('@/assets/images/Manjari3.jpg')}
           style={{ width: "100%", height: 200 }}
         />
       </View>
@@ -116,7 +116,7 @@ export default function CombinedScreen() {
 
         {/* Google OAuth from second code */} 
         <Pressable
-          onPress={onPressGoogle}
+         
           style={{ padding: 15, marginTop: 30, backgroundColor: '#f5c7c7', width: '100%', borderRadius: 14, alignItems: "center" }}
         >
           <Text style={{ fontSize: 20, fontFamily: 'itim' }}>Create an account with Google</Text>
