@@ -21,7 +21,7 @@ const login = () => {
         <StatusBar style="dark" />
         <View>
           <Image
-            source={require('../../assets/images/Manjari3.jpg')}
+            source={require('@/assets/images/Manjari3.jpg')}
             className="w-13 h-25 mb-5 object-cover"
           />
         </View>
