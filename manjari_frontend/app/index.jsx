@@ -1,35 +1,37 @@
 import { useUser } from "@clerk/clerk-expo";
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
-import { Link, Redirect, useRootNavigationState } from "expo-router";
+import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Redirect, useRootNavigationState } from "expo-router";
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Index() {
   const { user } = useUser();
   const rootNavigationState = useRootNavigationState();
+  const isFocused = useIsFocused();
+  const [isNavReady, setIsNavReady] = useState(false);
 
+  // Delay rendering until navigation is ready
   useEffect(() => {
-    CheckNavLoaded();
-  }, []);
+    if (rootNavigationState?.key) {
+      setIsNavReady(true);
+    }
+  }, [rootNavigationState]);
 
-  const CheckNavLoaded = () => {
-    if (!rootNavigationState.key) return null;
+  if (!isFocused || !isNavReady) {
+    return <ActivityIndicator size="large" color="#0000ff" />; // Loading state until navigation is ready
   }
 
   return (
-    (
-      <View>
-        {user ? (
-          <Redirect href={"/(tabs)/mainpage"} />
-        ) : (
-          <Redirect href={"/login"} />
-        )}
-        {/* <Link href={"/login"}>
-          <Text style={{ fontFamily: "itim" }}>Go to login screen</Text>
-        </Link> */}
-      </View>
-    )
+    <View>
+      {user ? (
+        <Redirect href={"/(tabs)/mainpage"} />
+      ) : (
+        <Redirect href={"/login"} />
+      )}
+    </View>
   );
 }
+
 
 // import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 // import { StatusBar } from 'expo-status-bar';

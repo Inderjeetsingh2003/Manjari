@@ -1,20 +1,40 @@
-import { View, Text, Image , TouchableOpacity} from 'react-native'
+import { View, Text, Image , TouchableOpacity, ScrollView} from 'react-native'
+import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import { router } from 'expo-router'
 
 const mainpage = () => {
   return (
     
-    <View>
-        <View>
-            <Image source={require('@/assets/images/Manjari3.jpg')}  className="absolute top-0 right-0"/>
-        </View>
-      <Text>mainpage</Text>
-      <TouchableOpacity className="items-center justify-center bg-[#32CD32]  rounded-lg mr-1" onPress={()=> router.push("/(tabs)/LangComm/land")}>
-    <Text className="text-base text-black text-center">GO to Language Module</Text>
-  </TouchableOpacity> 
-      
-    </View> 
+    <ScrollView className="bg-[#DCF2FA]">
+    <View className="flex-1 bg-[#DCF2FA] items-center justify-center px-5">
+      <StatusBar style="dark" />
+  
+      {/* Image at top-right */}
+      <View className="justify-center items-center">
+        <Image
+          source={require('@/assets/images/Manjari.jpg')}
+          className="w-40 h-40 rounded-full"
+        />
+      </View>
+  
+      {/* Centered TouchableOpacity with shadows */}
+      <View className="flex-1 justify-center items-center">
+        <TouchableOpacity 
+          className="w-60 h-60 bg-white rounded-lg shadow-lg justify-center items-center"
+          onPress={() => router.push("/(tabs)/LangComm/land")}
+        >
+          <Image source={require('@/assets/images/cartoon_talk.png')} className="w-3/4 h-3/4 "/>
+          <Text className="text-lg text-black text-center" style={{ fontFamily: 'itim' }}>
+            Speak your mind 
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </ScrollView>
+  
+   
+    
   )
 }
 
