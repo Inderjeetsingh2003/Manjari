@@ -1,10 +1,11 @@
 import React, { useEffect ,useState} from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, FlatList,Image } from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import LanguageCards from './LanguageCards';
+import arrow_left from '@/assets/images/arrow_back_24dp_F5C7C7.png'
 
 import speakWord from "./SpeakingFunction"
-export default function LanguageModule() {
+export default function LanguageModule({navigation}) {
   useEffect(() => {
     const lockOrientation = async () => {
       await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
@@ -19,20 +20,19 @@ export default function LanguageModule() {
   }, []);
 
   const wordsarrtemp = [
-    { wordname: 'rahul', wordtype: 'noun' },
-    { wordname: 'nibha', wordtype: 'noun' },
-    { wordname: 'zoha', wordtype: 'noun' },
-    { wordname: 'swim', wordtype: 'verb' },
+    { wordname: 'I', wordtype: 'pronoun' },
+    { wordname: 'want', wordtype: 'verb' },
+    { wordname: 'to', wordtype: 'preposition' },
+    { wordname: 'eat', wordtype: 'verb' },
     { wordname: 'beautiful', wordtype: 'adjective' },
     { wordname: 'happy', wordtype: 'adjective' },
-    { wordname: 'happy', wordtype: 'adjective' },
+    { wordname: 'am', wordtype: 'prepositiion' },
     { wordname: 'exciting', wordtype: 'adjective' },
     { wordname: 'learn', wordtype: 'verb' },
     { wordname: 'play', wordtype: 'verb' },
     { wordname: 'run', wordtype: 'verb' },
     { wordname: 'very', wordtype: 'adverb' },
-    { wordname: 'rohanshu Banodha', wordtype: 'adverb' },
-    { wordname: 'mustafa', wordtype: 'sentence' },
+   
   ];
 
   // Function to group words into rows of 5
@@ -72,24 +72,32 @@ export default function LanguageModule() {
   }
   return (
     <View style={styles.container}>
+      
+      <TouchableOpacity
+          className="absolute top-0 left-0 mt-5 ml-5"
+          onPress={() => navigation.navigate('WordLevel')} // Replace 'NextPage' with your actual route name
+        >
+          <Image source={arrow_left} className="w-10 h-10" />
+        </TouchableOpacity>
       {/* Bar container */}
       <View style={styles.barContainer}>
+        
         {/* Word to be spoken */}
-        <Text style={styles.wordText}>Word to speak:{WordToSpeak.join(', ')}</Text>
+        <Text style={styles.wordText}>Word to speak:{WordToSpeak.join(' ')}</Text>
 
         {/* Buttons container */}
         <View style={styles.buttonContainer}>
           {/* Speak button */}
           <TouchableOpacity style={styles.button} onPress={speakallwords} >
-            <Text style={styles.buttonText}>Speak</Text>
+            <Text style={styles.buttonText} className="text-white">Speak</Text>
           </TouchableOpacity>
 
           {/* Delete button */}
           <TouchableOpacity style={styles.button} onPress={handledelete}>
-            <Text style={styles.buttonText}>Delete</Text>
+            <Text style={styles.buttonText} className="text-white">Delete</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleclear}>
-            <Text style={styles.buttonText}>Clear</Text>
+            <Text style={styles.buttonText} className="text-white">Clear</Text>
           </TouchableOpacity>
         </View>
       </View>

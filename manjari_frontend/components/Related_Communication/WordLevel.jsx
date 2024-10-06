@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     folderBox: {
         width: '23%', // Set width to fit 4 folders in a row
         height: 100, // Height of the folder box
-        backgroundColor: '#ffeb3b', // Light yellow background
+        backgroundColor: '#ffe9A2', // Light yellow background
         borderRadius: 5, // Rounded corners
         elevation: 3, // Shadow effect
         justifyContent: 'center', // Center text vertically

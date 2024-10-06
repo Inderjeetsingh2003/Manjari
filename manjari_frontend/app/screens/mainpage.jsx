@@ -4,7 +4,7 @@ import React from 'react'
 import { router } from 'expo-router'
 import LangComm from './land';
 
-const mainpage = ({navigation}) => {
+const Mainpage = ({navigation}) => {
   return (
     
     <ScrollView className="bg-[#DCF2FA]">
@@ -45,4 +45,4 @@ const mainpage = ({navigation}) => {
   )
 }
 
-export default mainpage
+export default Mainpage

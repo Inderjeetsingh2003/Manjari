@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthStack from './AuthStack';  // The sign-up flow
-import MainPage from '../screens/mainpage';  // The main app page
+import MainPage from '../screens/Mainpage';  // The main app page
 import LangComm from '../screens/land'
 import LanguageModule from '../../components/Related_Communication/LanguageModule';
 import WordLevel from '../../components/Related_Communication/WordLevel';

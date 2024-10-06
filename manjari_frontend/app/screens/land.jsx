@@ -12,22 +12,30 @@ const handleclick=()=>
 
   return (
     <View style={styles.container}>
+      <View className="absolute top-5 right-5">
+          <Image
+            source={require('@/assets/images/Manjari.jpg')}
+            className="w-20 h-20 rounded-full mb-5"
+          />
+        </View>
+      <Text className='text-lg mt-10' >Select a folder you want to access</Text>
+
     {/* Folder for Easy */}
-    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#8fbc8f' }]} onPress={handleclick}>
-      <Text style={[styles.folderText]}>Easy</Text>
+    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#FABDB9' }]} onPress={handleclick}>
+      <Text style={[styles.folderText]}>Basic</Text>
     </TouchableOpacity>
 
     {/* Folder for Medium */}
-    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#ffd700' }]} onPress={handleclick}>
-      <Text style={[styles.folderText]}>Medium</Text>
+    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#f9a59e' }]} onPress={handleclick}>
+      <Text style={[styles.folderText]}>Advanced</Text>
     </TouchableOpacity>
 
     {/* Folder for Hard */}
-    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#ff4500' }]} onPress={handleclick}>
+    <TouchableOpacity style={[styles.folder,{ backgroundColor: '#f9968e' }]} onPress={handleclick}>
       <Text style={[styles.folderText]}>Quick Access</Text>
     </TouchableOpacity>
    
-  </View>
+  </View> 
   );
 };
 const styles = StyleSheet.create({
@@ -35,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-evenly', // Space the items evenly in the container
     alignItems: 'center', // Center the items horizontally
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#DCF2FA',
   },
   folder: {
     width: 150, // Width of the folder-like div

@@ -6,7 +6,7 @@ import locationIcon from '@/assets/images/location_on_24dp_F5C7C7.png';
 import cityIcon from '@/assets/images/location_city_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
-const step3 = ({navigation}) => {
+const Step3 = ({navigation}) => {
 
     const router = useRouter();
   const [city, setCity] = useState('');
@@ -117,4 +117,4 @@ const step3 = ({navigation}) => {
   )
 }
 
-export default step3
+export default Step3

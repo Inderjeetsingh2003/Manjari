@@ -6,7 +6,7 @@ import callIcon from '@/assets/images/call_24dp_F5C7C7.png';
 import personIcon from '@/assets/images/person_24dp_F5C7C7.png';
 import arrow_right from '@/assets/images/arrow_forward_24dp_F5C7C7.png';
 
-const step2 = ({navigation}) => {
+const Step2 = ({navigation}) => {
 
     const router = useRouter();
   const [fatherName, setFatherName] = useState('');
@@ -118,4 +118,4 @@ const step2 = ({navigation}) => {
   )
 }
 
-export default step2
+export default Step2

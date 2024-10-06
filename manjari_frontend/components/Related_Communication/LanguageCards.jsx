@@ -7,14 +7,17 @@ export default function LanguageCards({wordName,wordType,SetWordToSpeak,WordToSp
 
 const handleclick=(word)=>
 {
-  if(!WordToSpeak.includes(word))
-  {
-    SetWordToSpeak((previousword)=>
-    {
-       return [...previousword,word]
-    })
-  }
-
+  // if(!WordToSpeak.includes(word))
+  // {
+  //   SetWordToSpeak((previousword)=>
+  //   {
+  //      return [...previousword,word]
+  //   })
+  // }
+  SetWordToSpeak((previousword)=>
+      {
+         return [...previousword,word]
+      })
   speakWord(word)
 }
 
@@ -31,6 +34,8 @@ const handleclick=(word)=>
           
       case 'adverb':
             return '#E1BEE7'; // Light purple
+      case 'pronoun':
+          return '#FFFFC5';
         default:
             return "#ffffff"; //unrecognised
 
