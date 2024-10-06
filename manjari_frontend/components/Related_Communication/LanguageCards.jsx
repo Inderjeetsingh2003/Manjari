@@ -2,7 +2,7 @@ import React, { useContext,useEffect } from 'react';
 import { View, Text, Image, StyleSheet,TouchableOpacity } from 'react-native';
 
 import speakWord from './SpeakingFunction';
-export default function LanguageCards({wordName,wordType,SetWordToSpeak,WordToSpeak}) {
+export default function LanguageCards({wordName,wordType,SetWordToSpeak,WordToSpeak,url}) {
 
 
 const handleclick=(word)=>
@@ -45,7 +45,7 @@ const handleclick=(word)=>
     <TouchableOpacity style={[styles.cardContainer,{backgroundColor:getbackgroundcolor(wordType)}]}  onPress={()=>handleclick(wordName)}>
       {/* Image */}
       <Image
-        source={{ uri: 'https://example.com/image.jpg' }} // Replace with your image URL or local image source
+        source={ url } // Replace with your image URL or local image source
         style={styles.image}
       />
       

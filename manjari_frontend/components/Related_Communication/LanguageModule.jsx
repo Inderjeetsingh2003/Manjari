@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, FlatList,Image } from 'react-
 import * as ScreenOrientation from 'expo-screen-orientation';
 import LanguageCards from './LanguageCards';
 import arrow_left from '@/assets/images/arrow_back_24dp_F5C7C7.png'
-
+ 
 import speakWord from "./SpeakingFunction"
 export default function LanguageModule({navigation}) {
   useEffect(() => {
@@ -20,18 +20,18 @@ export default function LanguageModule({navigation}) {
   }, []);
 
   const wordsarrtemp = [
-    { wordname: 'I', wordtype: 'pronoun' },
-    { wordname: 'want', wordtype: 'verb' },
-    { wordname: 'to', wordtype: 'preposition' },
-    { wordname: 'eat', wordtype: 'verb' },
-    { wordname: 'beautiful', wordtype: 'adjective' },
-    { wordname: 'happy', wordtype: 'adjective' },
-    { wordname: 'am', wordtype: 'prepositiion' },
-    { wordname: 'exciting', wordtype: 'adjective' },
-    { wordname: 'learn', wordtype: 'verb' },
-    { wordname: 'play', wordtype: 'verb' },
-    { wordname: 'run', wordtype: 'verb' },
-    { wordname: 'very', wordtype: 'adverb' },
+    { wordname: 'I', wordtype: 'pronoun' , url: require('@/assets/images/I.jpeg') },
+    { wordname: 'want', wordtype: 'verb', url: require('@/assets/images/Want.jpeg')  },
+    { wordname: 'to', wordtype: 'preposition',url: require('@/assets/images/Want.jpeg')  },
+    { wordname: 'eat', wordtype: 'verb',url: require('@/assets/images/Eat.jpeg')  },
+    { wordname: 'Drink', wordtype: 'adjective',url: require('@/assets/images/Drink.jpeg')  },
+    { wordname: 'happy', wordtype: 'adjective',url: require('@/assets/images/Happy.jpeg')  },
+    { wordname: 'am', wordtype: 'prepositiion',url: require('@/assets/images/I.jpeg')  },
+    { wordname: 'tired', wordtype: 'adjective',url: require('@/assets/images/Tired.jpeg')  },
+    { wordname: 'learn', wordtype: 'verb',url: require('@/assets/images/Learn.jpeg')  },
+    { wordname: 'play', wordtype: 'verb',url: require('@/assets/images/Play.jpeg')  },
+    { wordname: 'run', wordtype: 'verb',url: require('@/assets/images/Want.jpeg')  },
+    { wordname: 'very', wordtype: 'adverb',url: require('@/assets/images/Want.jpeg')  },
    
   ];
 
@@ -108,7 +108,7 @@ export default function LanguageModule({navigation}) {
         renderItem={({ item }) => (
           <View style={styles.rowContainer}>
             {item.map((word, index) => (
-              <LanguageCards key={index} wordName={word.wordname} wordType={word.wordtype}  SetWordToSpeak={SetWordToSpeak} WordToSpeak={WordToSpeak}/>
+              <LanguageCards key={index} wordName={word.wordname} wordType={word.wordtype}  url={word.url} SetWordToSpeak={SetWordToSpeak} WordToSpeak={WordToSpeak}/>
             ))}
           </View>
         )}
