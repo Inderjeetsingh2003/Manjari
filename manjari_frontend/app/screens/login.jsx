@@ -1,15 +1,26 @@
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
-import passwordIcon from '../../assets/images/lock_24dp_F5C7C7.png';
-import emailIcon from '../../assets/images/email_24dp_F5C7C7.png';
+import passwordIcon from '@/assets/images/lock_24dp_F5C7C7.png';
+import emailIcon from '@/assets/images/email_24dp_F5C7C7.png';
+import { useUser } from "@clerk/clerk-expo";
 
 const login = () => {
     const router = useRouter();
+    const { user } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+    console.log(1)
+    useEffect(() => {
+      if (user) {
+          console.log("User Full Name:", user.fullName);
+          console.log("User Email:", user.emailAddresses[0]?.emailAddress);
+      }
+  }, [user]);
+
+
+    console.log("helloooo")
     const handleLogin = () => {
       console.log('Logging in with:', email, password);
       router.push("/(tabs)/mainpage");
