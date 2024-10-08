@@ -4,7 +4,7 @@ import AuthStack from './AuthStack';  // The sign-up flow
 import MainPage from '../screens/mainpage';  // The main app page
 import LangComm from '../screens/land'
 import LanguageModule from '../../components/Related_Communication/LanguageModule';
-import WordLevel from '../../components/Related_Communication/WordLevel';
+import WordLevel from '../../components/Related_Communication/Folder';
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {

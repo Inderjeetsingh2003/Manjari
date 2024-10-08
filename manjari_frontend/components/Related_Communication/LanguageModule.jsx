@@ -1,10 +1,12 @@
-import React, { useEffect ,useState} from 'react';
+import React, { useEffect ,useState,useRef} from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, FlatList,Image } from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import LanguageCards from './LanguageCards';
 import arrow_left from '@/assets/images/arrow_back_24dp_F5C7C7.png'
  
 import speakWord from "./SpeakingFunction"
+//import VerticalBar from '../Navigation_Bar/VerticalBar';
+
 export default function LanguageModule({navigation}) {
   useEffect(() => {
     const lockOrientation = async () => {
@@ -61,7 +63,7 @@ export default function LanguageModule({navigation}) {
     {
       SetWordToSpeak((prev)=>
       {
-       return  prev.slice(0,-1)
+        return  prev.slice(0,-1)
       })
     }
   }
@@ -70,7 +72,10 @@ export default function LanguageModule({navigation}) {
   {
     SetWordToSpeak([])
   }
+
+  
   return (
+    
     <View style={styles.container}>
       
       <TouchableOpacity
@@ -116,7 +121,11 @@ export default function LanguageModule({navigation}) {
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       />
+      
+   
     </View>
+    
+  
   );
 }
 
@@ -160,8 +169,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   rowContainer: {
-    flexDirection: 'row', // Make the contents horizontal in each row
-    justifyContent: 'flex-start', // Align items to the start
-    marginBottom: 10, // Space between rows
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginBottom: 10, 
   },
+
 });

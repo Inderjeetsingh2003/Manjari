@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView ,TouchableOpacity} from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import VerticalBar from '../Navigation_Bar/VerticalBar';
 
 export default function WordLevel({navigation}) {
     useEffect(() => {
@@ -33,6 +34,7 @@ export default function WordLevel({navigation}) {
 navigation.navigate('LanguageModule')
     }
     return (
+        <>
         <View style={styles.container}>
             {/* Heading */}
             <Text style={styles.heading}>Your Folders</Text>
@@ -46,6 +48,8 @@ navigation.navigate('LanguageModule')
                 ))}
             </ScrollView>
         </View>
+        <VerticalBar  AddNew={"add Folder"} />
+                </>
     );
 }
 
