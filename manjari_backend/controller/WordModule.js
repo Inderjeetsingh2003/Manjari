@@ -162,6 +162,8 @@ const retrivewords = async (req, res) => {
                 $project: { 
                     word: "$folders.words.word",
                     wordtype: "$folders.words.wordtype", 
+                    folderName:"$folders.folderName",
+                    wordId:"$folders.words._id",
                     source: { $literal: 'admin' }  
                 } 
             }
@@ -179,6 +181,8 @@ const retrivewords = async (req, res) => {
                 $project: { 
                     parentId:req.user.id,
                     word: "$folders.words.word",  
+                    wordId:"$folders.words._id",
+                    folderName:"$folders.folderName",
                     wordtype: "$folders.words.wordtype",  
                     source: { $literal: 'client' }  
                 } 
@@ -195,7 +199,76 @@ const retrivewords = async (req, res) => {
         console.error("Error retrieving words:", error);
         return res.status(500).json({ message: error.message });
     }
+
+
+
 };
 
-module.exports = { addAdminWord, addClientword,retrivewords};
+const deleteword = async (req, res) => {
+    try {
+        const { wordId, folderName } = req.params;  
+        console.log(typeof(wordId))
+       // const id=new mongoose.Types.ObjectId(wordId)
+        const clientWordDocument = await ClientWord.findOne({
+            parentId: req.user.id,  
+            "folders.folderName": folderName, 
+            "folders.words._id": new mongoose.Types.ObjectId(wordId) 
+        });
+
+//return res.status(200).json(clientWordDocument)
+        
+        if (!clientWordDocument) {
+            return res.status(404).json({ message: " you are not authorized to delete it" });
+        }
+
+        
+        await ClientWord.updateOne(
+            {
+                parentId: req.user.id,
+                "folders.folderName": folderName  
+            },
+            {
+                $pull: { "folders.$.words": { _id: wordId } }  
+            }
+        );
+
+        return res.status(200).json({ message: "Word deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting word:", error);
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
+
+
+ /*const editword=async(req,res)=>
+{
+    try{
+        const{wordID,folderName}=req.params;
+        const{word,wordtype, photurl}=req.body;
+        let clienfolder=await ClientWord.findOne({parentId:req.user.id,"folders.folderName":folderName})
+        if(!clientfolder)
+        {
+            return res.status(400).json("you are not authorized to update the word")
+        }
+        
+        const existingWord = clientfolder.words.find(word => word._id.toString() === wordId);
+
+        const updateword={
+            word:word||existingWord.word,
+            word:wordype||existingWord.wordtype,
+            photourl: photourl || existingWord.photourl
+        }
+        
+      
+        res.status(200).json({ message: "Word updated successfully", updatedDocument });
+    }
+    catch(error)
+    {
+        return res.status(500).json("internal server error")
+    }
+}
+    */
+module.exports = { addAdminWord, addClientword,retrivewords,deleteword};
 
