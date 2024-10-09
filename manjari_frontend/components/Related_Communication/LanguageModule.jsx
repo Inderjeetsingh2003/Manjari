@@ -11,6 +11,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import LanguageCards from "./LanguageCards";
 import arrow_left from "@/assets/images/arrow_back_24dp_F5C7C7.png";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import SlidingMenu from "../Sliding_Menu/SlidingMenu";
 
 import speakWord from "./SpeakingFunction";
 //import VerticalBar from '../Navigation_Bar/VerticalBar';
@@ -125,7 +126,9 @@ export default function LanguageModule({ navigation }) {
     SetWordToSpeak([]);
   };
 
+  const [menuVisible, setMenuVisible] = useState(false);
   return (
+
     <View style={styles.container}>
       <TouchableOpacity
         className="absolute top-0 left-0 mt-5 ml-5"
@@ -135,46 +138,47 @@ export default function LanguageModule({ navigation }) {
       </TouchableOpacity>
       {/* Bar container */}
 
-     
-        <View style={styles.barContainer}>
-          {/* Word to be spoken */}
-          <Text style={styles.wordText}>
-            Word to speak:{WordToSpeak.join(" ")}
-          </Text>
+      <View style={styles.barContainer}>
+        {/* Word to be spoken */}
+        <Text style={styles.wordText}>
+          Word to speak:{WordToSpeak.join(" ")}
+        </Text>
 
-          {/* Buttons container */}
-          <View style={styles.buttonContainer}>
-            {/* Speak button */}
-            <TouchableOpacity style={styles.button} onPress={speakallwords}>
-              <Text style={styles.buttonText} className="text-white">
-                Speak
-              </Text>
-            </TouchableOpacity>
+        {/* Buttons container */}
+        <View style={styles.buttonContainer}>
+          {/* Speak button */}
+          <TouchableOpacity style={styles.button} onPress={speakallwords}>
+            <Text style={styles.buttonText} className="text-white">
+              Speak
+            </Text>
+          </TouchableOpacity>
 
-            {/* Delete button */}
-            <TouchableOpacity style={styles.button} onPress={handledelete}>
-              <Text style={styles.buttonText} className="text-white">
-                Delete
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={handleclear}>
-              <Text style={styles.buttonText} className="text-white">
-                Clear
-              </Text>
-            </TouchableOpacity>
-          </View>
- 
-       
+          {/* Delete button */}
+          <TouchableOpacity style={styles.button} onPress={handledelete}>
+            <Text style={styles.buttonText} className="text-white">
+              Delete
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={handleclear}>
+            <Text style={styles.buttonText} className="text-white">
+              Clear
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      
+      {/* Sliding Menu */}
+      {menuVisible && <SlidingMenu style={{ display: "flex" }}></SlidingMenu>}
+      
       <TouchableOpacity
-          style={styles.button}
-          onPress={() => alert("Sliding Menu")}
-          className="absolute top-0 right-3 mt-5 ml-5"
-        >
-          <Icon name="menu" size={24} color="#fff" style={styles.icon} />
-        
-        </TouchableOpacity>
+        style={styles.button}
+        onPress={() => setMenuVisible(!menuVisible)}
+        className="absolute top-0 right-3 mt-5 ml-5"
+      >
+        <Icon name="menu" size={24} color="#fff" style={styles.icon} />
+      </TouchableOpacity>
 
+     
       {/* Vertical Scrollable Language Cards */}
       <FlatList
         data={rows}
